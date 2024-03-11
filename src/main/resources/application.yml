@@ -8,7 +8,6 @@ spring:
     username: admin
     password: admin
 
-
 camunda:
   bpm:
     client:
@@ -17,6 +16,9 @@ camunda:
       max-tasks: 1 #一次最多拉取任务数量
       lock-duration: 20000 #上锁时间，锁住期间，其它订阅者拉取不了任务
       worker-id: external-client1 #给工作节点指定id(给一个名称)
+      basic-auth:
+        username: javasdk
+        password: test
 
 #mybatis-plus:
 #  configuration:

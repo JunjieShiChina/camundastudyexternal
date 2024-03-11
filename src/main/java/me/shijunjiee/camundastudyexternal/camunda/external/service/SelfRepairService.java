@@ -15,7 +15,8 @@ import java.util.concurrent.TimeUnit;
 public class SelfRepairService {
 
     @Bean
-    @ExternalTaskSubscription(topicName = "try_self_repair_topic", processDefinitionKey = "external_task_test", lockDuration = 50000)
+//    @ExternalTaskSubscription(topicName = "try_self_repair_topic", processDefinitionKey = "external_task_test", lockDuration = 50000)
+    @ExternalTaskSubscription(topicName = "try_self_repair_topic", lockDuration = 50000)
     public ExternalTaskHandler doSelfRepair() {
 
         return (externalTask, externalTaskService) -> {
@@ -25,8 +26,8 @@ public class SelfRepairService {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            boolean isFree = externalTask.getVariable("isFree");
-            if (isFree) {
+            Object isFree = externalTask.getVariable("isFree");
+            if (isFree == null || (boolean)isFree) {
                 log.info("免费维修");
                 externalTaskService.handleFailure(externalTask, "维修是免费的，不用自修了", "因为维修是免费的，所以不需要浪费时间自修", 0, 5000); // 想要控制端报Incidents，retries必须设置为0
             } else {
