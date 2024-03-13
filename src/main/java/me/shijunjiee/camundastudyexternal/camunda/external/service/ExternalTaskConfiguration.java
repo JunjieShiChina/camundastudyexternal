@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 @Configuration
 @Slf4j
-public class SelfRepairService {
+public class ExternalTaskConfiguration {
 
     @Bean
 //    @ExternalTaskSubscription(topicName = "try_self_repair_topic", processDefinitionKey = "external_task_test", lockDuration = 50000)
@@ -34,6 +34,17 @@ public class SelfRepairService {
                 log.info("收费维修");
                 externalTaskService.complete(externalTask);
             }
+        };
+    }
+
+    @Bean
+    @ExternalTaskSubscription(topicName = "checkNegtiveTopic", processDefinitionKey = "Process_parallel_test", lockDuration = 50000)
+    public ExternalTaskHandler doCheckNegtive() {
+        return (externalTask, externalTaskService) -> {
+            log.info("进入检查视频是否负面");
+            Object videoName = externalTask.getVariable("videoName");
+            log.info("进入检查视频是否负面,检测到视频名称:{}", videoName);
+            externalTaskService.complete(externalTask);
         };
     }
 
