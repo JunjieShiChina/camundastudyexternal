@@ -27,7 +27,7 @@ public class ExternalTaskConfiguration {
                 throw new RuntimeException(e);
             }
             Object isFree = externalTask.getVariable("isFree");
-            if (isFree == null || (boolean)isFree) {
+            if (isFree == null || (boolean) isFree) {
                 log.info("免费维修");
                 externalTaskService.handleFailure(externalTask, "维修是免费的，不用自修了", "因为维修是免费的，所以不需要浪费时间自修", 0, 5000); // 想要控制端报Incidents，retries必须设置为0
             } else {
@@ -48,5 +48,22 @@ public class ExternalTaskConfiguration {
         };
     }
 
+    @Bean
+    @ExternalTaskSubscription(topicName = "wechatPayTopic", processDefinitionKey = "Process_message_event_test", lockDuration = 50000)
+    public ExternalTaskHandler doWechatPay() {
+        return (externalTask, externalTaskService) -> {
+            log.info("开始微信支付,businessKey:{}, variables:{}", externalTask.getBusinessKey(), externalTask.getAllVariables());
+            externalTaskService.complete(externalTask);
+        };
+    }
+
+    @Bean
+    @ExternalTaskSubscription(topicName = "alipayTopic", processDefinitionKey = "Process_message_event_test", lockDuration = 50000)
+    public ExternalTaskHandler doAlyPay() {
+        return (externalTask, externalTaskService) -> {
+            log.info("开始支付宝支付,businessKey:{}, variables:{}", externalTask.getBusinessKey(), externalTask.getAllVariables());
+            externalTaskService.complete(externalTask);
+        };
+    }
 
 }
