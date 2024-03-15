@@ -50,7 +50,8 @@ public class ExternalTaskConfiguration {
     }
 
     @Bean
-    @ExternalTaskSubscription(topicName = "wechatPayTopic", processDefinitionKey = "Process_message_event_test", lockDuration = 50000)
+//    @ExternalTaskSubscription(topicName = "wechatPayTopic", processDefinitionKey = "Process_message_event_test", lockDuration = 50000)
+    @ExternalTaskSubscription(topicName = "wechatPayTopic", processDefinitionKey = "Process_pool_lane", lockDuration = 50000)
     public ExternalTaskHandler doWechatPay() {
         return (externalTask, externalTaskService) -> {
             log.info("开始微信支付,businessKey:{}, variables:{}", externalTask.getBusinessKey(), externalTask.getAllVariables());
@@ -59,7 +60,8 @@ public class ExternalTaskConfiguration {
     }
 
     @Bean
-    @ExternalTaskSubscription(topicName = "alipayTopic", processDefinitionKey = "Process_message_event_test", lockDuration = 50000)
+//    @ExternalTaskSubscription(topicName = "alipayTopic", processDefinitionKey = "Process_message_event_test", lockDuration = 50000)
+    @ExternalTaskSubscription(topicName = "alipayTopic", processDefinitionKey = "Process_pool_lane", lockDuration = 50000)
     public ExternalTaskHandler doAlyPay() {
         return (externalTask, externalTaskService) -> {
             log.info("开始支付宝支付,businessKey:{}, variables:{}", externalTask.getBusinessKey(), externalTask.getAllVariables());
