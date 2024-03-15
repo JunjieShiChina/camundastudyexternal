@@ -38,7 +38,8 @@ public class ExternalTaskConfiguration {
     }
 
     @Bean
-    @ExternalTaskSubscription(topicName = "checkNegtiveTopic", processDefinitionKey = "Process_parallel_test", lockDuration = 50000)
+//    @ExternalTaskSubscription(topicName = "checkNegtiveTopic", processDefinitionKey = "Process_parallel_test", lockDuration = 50000)
+    @ExternalTaskSubscription(topicName = "checkNegtiveTopic", lockDuration = 50000)
     public ExternalTaskHandler doCheckNegtive() {
         return (externalTask, externalTaskService) -> {
             log.info("进入检查视频是否负面");
