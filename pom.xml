@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.3</version>
+		<version>3.1.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>me.shijunjiee</groupId>
@@ -15,7 +15,7 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
-		<camunda.external-task-client.version>7.20.0</camunda.external-task-client.version>
+		<camunda.spring-boot.version>7.20.0</camunda.spring-boot.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -65,7 +65,14 @@
 		<dependency>
 			<groupId>org.camunda.bpm.springboot</groupId>
 			<artifactId>camunda-bpm-spring-boot-starter-external-task-client</artifactId>
-			<version>${camunda.external-task-client.version}</version>
+			<version>${camunda.spring-boot.version}</version>
+		</dependency>
+
+		<!--		集成camunda引擎端的restApi start-->
+		<dependency>
+			<groupId>org.camunda.community.rest</groupId>
+			<artifactId>camunda-platform-7-rest-client-spring-boot-starter</artifactId>
+			<version>${camunda.spring-boot.version}</version>
 		</dependency>
 	</dependencies>
 

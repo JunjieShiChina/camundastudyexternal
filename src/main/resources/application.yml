@@ -20,6 +20,36 @@ camunda:
         username: javasdk
         password: test
 
+feign:
+  client:
+    config:
+      processInstance:
+        url: ${camunda.bpm.client.base-url}
+      processDefinition:
+        url: ${camunda.bpm.client.base-url}
+      message:
+        url: ${camunda.bpm.client.base-url}
+      signal:
+        url: ${camunda.bpm.client.base-url}
+      execution:
+        url: ${camunda.bpm.client.base-url}
+      task:
+        url: ${camunda.bpm.client.base-url}
+      taskVariable:
+        url: ${camunda.bpm.client.base-url}
+      taskLocalVariable:
+        url: ${camunda.bpm.client.base-url}
+      taskIdentityLink:
+        url: ${camunda.bpm.client.base-url}
+      externalTask:
+        url: ${camunda.bpm.client.base-url}
+      incident:
+        url: ${camunda.bpm.client.base-url}
+      historicProcessInstance:
+        url: ${camunda.bpm.client.base-url}
+      deployment:
+        url: ${camunda.bpm.client.base-url}
+
 #mybatis-plus:
 #  configuration:
 #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 开启sql日志

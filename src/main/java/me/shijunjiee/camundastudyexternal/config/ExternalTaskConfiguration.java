@@ -1,4 +1,4 @@
-package me.shijunjiee.camundastudyexternal.camunda.external.service;
+package me.shijunjiee.camundastudyexternal.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.camunda.bpm.client.spring.annotation.ExternalTaskSubscription;
