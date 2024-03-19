@@ -74,6 +74,15 @@
 			<artifactId>camunda-platform-7-rest-client-spring-boot-starter</artifactId>
 			<version>${camunda.spring-boot.version}</version>
 		</dependency>
+		<!--		集成camunda引擎端的restApi end-->
+
+		<!--		camunda使用spinJson客户端需要引入如下依赖 start-->
+		<dependency>
+			<groupId>org.camunda.spin</groupId>
+			<artifactId>camunda-spin-dataformat-all</artifactId>
+			<version>1.23.0</version>
+		</dependency>
+		<!--		camunda使用spinJson客户端需要引入如下依赖 end-->
 	</dependencies>
 
 	<build>
