@@ -12,9 +12,9 @@ camunda:
   bpm:
     client:
       base-url: http://localhost:8888/engine-rest #引擎根路径
-      async-response-timeout: 20000 #长轮询时间间隔
-      max-tasks: 1 #一次最多拉取任务数量
-      lock-duration: 20000 #上锁时间，锁住期间，其它订阅者拉取不了任务
+      async-response-timeout: 10000 #长轮询时间间隔
+      max-tasks: 50 #一次最多拉取任务数量
+      lock-duration: 10000 #上锁时间，锁住期间，其它订阅者拉取不了任务
       worker-id: external-client1 #给工作节点指定id(给一个名称)
       basic-auth:
         username: javasdk
