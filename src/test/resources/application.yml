@@ -1,0 +1,56 @@
+server:
+  port: 8080 # 端口号
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/test  # 数据库
+    driver-class-name: com.mysql.jdbc.Driver
+    username: admin
+    password: admin
+
+camunda:
+  bpm:
+    client:
+      base-url: http://localhost:8888/engine-rest #引擎根路径
+      async-response-timeout: 10000 #长轮询时间间隔
+      max-tasks: 50 #一次最多拉取任务数量
+      lock-duration: 10000 #上锁时间，锁住期间，其它订阅者拉取不了任务
+      worker-id: external-client1 #给工作节点指定id(给一个名称)
+      basic-auth:
+        username: javasdk
+        password: test
+
+feign:
+  client:
+    config:
+      processInstance:
+        url: ${camunda.bpm.client.base-url}
+      processDefinition:
+        url: ${camunda.bpm.client.base-url}
+      message:
+        url: ${camunda.bpm.client.base-url}
+      signal:
+        url: ${camunda.bpm.client.base-url}
+      execution:
+        url: ${camunda.bpm.client.base-url}
+      task:
+        url: ${camunda.bpm.client.base-url}
+      taskVariable:
+        url: ${camunda.bpm.client.base-url}
+      taskLocalVariable:
+        url: ${camunda.bpm.client.base-url}
+      taskIdentityLink:
+        url: ${camunda.bpm.client.base-url}
+      externalTask:
+        url: ${camunda.bpm.client.base-url}
+      incident:
+        url: ${camunda.bpm.client.base-url}
+      historicProcessInstance:
+        url: ${camunda.bpm.client.base-url}
+      deployment:
+        url: ${camunda.bpm.client.base-url}
+
+#mybatis-plus:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 开启sql日志
+#    map-underscore-to-case: true # 开启驼峰映射(mp默认开启)

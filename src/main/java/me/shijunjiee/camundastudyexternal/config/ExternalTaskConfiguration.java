@@ -13,6 +13,7 @@ import org.camunda.bpm.engine.variable.Variables;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.text.DateFormat;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
@@ -115,5 +116,15 @@ public class ExternalTaskConfiguration {
             externalTaskService.complete(externalTask);
         };
     }
+
+//    @Bean
+//    @ExternalTaskSubscription(topicName = "topictest", processDefinitionKey = "Process_topic_circle", lockDuration = 50000)
+//    public ExternalTaskHandler topictest() {
+//        return (externalTask, externalTaskService) -> {
+//            // 当前系统时间，格式yyyy-MM-dd HH:mm:ss
+//            log.info("topic轮询订阅测试,当前系统时间:{}", DateFormat.getDateTimeInstance().format(System.currentTimeMillis()));
+////            externalTaskService.complete(externalTask);
+//        };
+//    }
 
 }
