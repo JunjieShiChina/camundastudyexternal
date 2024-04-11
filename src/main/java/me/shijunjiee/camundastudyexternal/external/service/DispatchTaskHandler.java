@@ -9,7 +9,8 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 @Component
-@ExternalTaskSubscription(topicName = "dispatchTask", processDefinitionKeyIn = {"process_aysc"}, includeExtensionProperties = true, lockDuration = 20000)
+@ExternalTaskSubscription(topicName = "dispatchTask", processDefinitionKeyIn = {"process_aysc"}
+        , includeExtensionProperties = true, lockDuration = 20000)
 public class DispatchTaskHandler implements ExternalTaskHandler {
 
     @Override
