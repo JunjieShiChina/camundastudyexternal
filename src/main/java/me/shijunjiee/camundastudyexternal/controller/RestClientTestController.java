@@ -66,12 +66,12 @@ public class RestClientTestController {
     }
 
     @GetMapping("/sendMessage")
-    public void sendMessage(@RequestParam("businessKey") String businessKey) {
+    public void sendMessage(@RequestParam("messageName") String messageName, @RequestParam(value = "businessKey", required = false) String businessKey) {
         VariableMap variables = Variables.createVariables();
         variables.put("result1", "this is result1");
         variables.put("result2", "this is result2");
 
-        runtimeService.createMessageCorrelation("Message_aysc_finish")
+        runtimeService.createMessageCorrelation(messageName)
                 .processInstanceBusinessKey(businessKey)
                 .setVariables(variables).correlate();
 
